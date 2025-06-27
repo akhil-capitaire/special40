@@ -185,9 +185,7 @@ class OnboardScreenState extends ConsumerState<OnboardScreen> {
                         CustomButton(
                           label: 'Sign Up',
                           onPressed: () {
-                            setState(() {
-                              continueClick = true;
-                            });
+                            Navigator.pushNamed(context, Routes.signUp);
                           },
                           isSmall: true,
                           type: ButtonType.primary,
@@ -195,10 +193,7 @@ class OnboardScreenState extends ConsumerState<OnboardScreen> {
                         CustomButton(
                           label: 'Sign In',
                           onPressed: () {
-                            Navigator.pushReplacementNamed(
-                              context,
-                              Routes.signIn,
-                            );
+                            Navigator.pushNamed(context, Routes.signInMethod);
                           },
                           isSmall: true,
                           type: ButtonType.outlined,
@@ -218,7 +213,7 @@ class OnboardScreenState extends ConsumerState<OnboardScreen> {
       right: 24,
       child: TextButton(
         onPressed: () {
-          Navigator.pushReplacementNamed(context, Routes.signIn);
+          Navigator.pushReplacementNamed(context, Routes.signInMethod);
         },
         child: Text(
           'Skip',

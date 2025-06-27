@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:special40/utils/app_colors.dart';
 
 import 'constants.dart';
 
 enum ButtonType { primary, secondary, grey, outlined, cardButton }
 
-// ignore: must_be_immutable
 class CustomButton extends ConsumerStatefulWidget {
   final String label;
   final Function onPressed;
@@ -23,10 +23,10 @@ class CustomButton extends ConsumerStatefulWidget {
   });
 
   @override
-  ConsumerState<CustomButton> createState() => _CustomButtonState();
+  ConsumerState<CustomButton> createState() => CustomButtonState();
 }
 
-class _CustomButtonState extends ConsumerState<CustomButton> {
+class CustomButtonState extends ConsumerState<CustomButton> {
   Color getBackgroundColor() {
     switch (widget.type) {
       case ButtonType.primary:
@@ -132,6 +132,110 @@ class _CustomButtonState extends ConsumerState<CustomButton> {
                   fontSize: baseFontSize + 6,
                 ),
               ),
+      ),
+    );
+  }
+}
+
+enum SignInMethod { email, mobile, google, apple }
+
+class CustomSignInButton extends StatelessWidget {
+  final SignInMethod method;
+  final VoidCallback onPressed;
+  final bool isLoading;
+
+  const CustomSignInButton({
+    super.key,
+    required this.method,
+    required this.onPressed,
+    this.isLoading = false,
+  });
+
+  String getLabel() {
+    switch (method) {
+      case SignInMethod.email:
+        return 'Sign in with Email';
+      case SignInMethod.mobile:
+        return 'Sign in with Mobile';
+      case SignInMethod.google:
+        return 'Sign in with Google';
+      case SignInMethod.apple:
+        return 'Sign in with Apple';
+    }
+  }
+
+  IconData getIcon() {
+    switch (method) {
+      case SignInMethod.email:
+        return Icons.email_outlined;
+      case SignInMethod.mobile:
+        return Icons.phone_android;
+      case SignInMethod.google:
+        return FontAwesomeIcons.google;
+      case SignInMethod.apple:
+        return FontAwesomeIcons.apple;
+    }
+  }
+
+  Color getBackgroundColor(BuildContext context) {
+    switch (method) {
+      case SignInMethod.google:
+        return Colors.white;
+      case SignInMethod.apple:
+        return Colors.black;
+      default:
+        return AppColors.teal;
+    }
+  }
+
+  Color getTextColor(BuildContext context) {
+    switch (method) {
+      case SignInMethod.google:
+        return Colors.black;
+      case SignInMethod.apple:
+        return Colors.white;
+      default:
+        return Colors.white;
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: 48,
+      width: double.infinity,
+      child: ElevatedButton.icon(
+        icon: isLoading
+            ? const SizedBox.shrink()
+            : Icon(getIcon(), color: getTextColor(context)),
+        label: isLoading
+            ? Transform.scale(
+                scale: 0.5,
+                child: CircularProgressIndicator(
+                  valueColor: AlwaysStoppedAnimation<Color>(
+                    getTextColor(context),
+                  ),
+                ),
+              )
+            : Text(
+                getLabel(),
+                style: TextStyle(
+                  color: getTextColor(context),
+                  fontSize: 16,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+        style: ElevatedButton.styleFrom(
+          backgroundColor: getBackgroundColor(context),
+          elevation: 2,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12),
+            side: method == SignInMethod.google
+                ? const BorderSide(color: Colors.grey)
+                : BorderSide.none,
+          ),
+        ),
+        onPressed: isLoading ? null : onPressed,
       ),
     );
   }
