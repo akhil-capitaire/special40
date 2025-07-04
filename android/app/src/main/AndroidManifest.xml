@@ -1,6 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
     <application
-        android:label="special40"
+        android:label="Special 40"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

@@ -37,6 +37,9 @@ dependencies:
   flutter_riverpod: any
   colorful_safe_area: any
   font_awesome_flutter: any
+  pinput: any
+  intl: any
+  lucide_icons: any
 
 dev_dependencies:
   flutter_test:
@@ -65,6 +68,8 @@ flutter:
     - assets/images/
     - assets/images/onboard/
     - assets/images/illustrations/
+    - assets/images/icons/
+    - assets/images/demo/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images

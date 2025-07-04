@@ -32,15 +32,19 @@ class OnboardScreenState extends ConsumerState<OnboardScreen> {
 
   void startAutoScroll() {
     timer = Timer.periodic(const Duration(seconds: 3), (timer) {
-      if (currentIndex < pages.length - 1) {
-        currentIndex++;
+      final nextPage = currentIndex + 1;
+
+      if (nextPage < pages.length - 1) {
+        setState(() => currentIndex = nextPage);
         pageController.animateToPage(
           currentIndex,
           duration: const Duration(milliseconds: 500),
           curve: Curves.easeInOut,
         );
       } else {
-        timer?.cancel();
+        // Jump to first page *without animation* to avoid visual jump/jank
+        setState(() => currentIndex = 0);
+        pageController.jumpToPage(0);
       }
     });
   }
@@ -213,7 +217,7 @@ class OnboardScreenState extends ConsumerState<OnboardScreen> {
       right: 24,
       child: TextButton(
         onPressed: () {
-          Navigator.pushReplacementNamed(context, Routes.signInMethod);
+          Navigator.pushNamed(context, Routes.signInMethod);
         },
         child: Text(
           'Skip',

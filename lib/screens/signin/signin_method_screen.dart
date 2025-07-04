@@ -66,7 +66,9 @@ class SignInMethodScreenState extends ConsumerState<SignInMethodScreen> {
               sb(0, 2),
               CustomSignInButton(
                 method: SignInMethod.email,
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushNamed(context, Routes.signInEmail);
+                },
                 isLoading: false,
               ),
               sb(0, 2),

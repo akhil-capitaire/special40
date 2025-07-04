@@ -36,9 +36,7 @@ class SplashScreenState extends ConsumerState<SplashScreen> {
       bool loginStatus = true;
       // await SharedPreferenceUtils.getLoginStatus();
       if (loginStatus) {
-        Navigator.pushReplacementNamed(context, Routes.onboard);
-      } else {
-        Navigator.pushReplacementNamed(context, Routes.onboard);
+        Navigator.pushReplacementNamed(context, Routes.home);
       }
     });
   }

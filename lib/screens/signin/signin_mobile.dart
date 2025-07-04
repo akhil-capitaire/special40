@@ -4,6 +4,7 @@ import 'package:special40/utils/buttons.dart';
 import 'package:special40/utils/spaces.dart';
 import 'package:special40/widgets/form_input.dart';
 
+import '../../utils/routes.dart';
 import '../../widgets/custom_scaffold.dart';
 
 class SignInMobile extends ConsumerStatefulWidget {
@@ -21,6 +22,7 @@ class SignInMobileState extends ConsumerState<SignInMobile> {
     return CustomScaffold(
       backButton: true,
       title: '',
+      isScrollable: false,
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -54,9 +56,16 @@ class SignInMobileState extends ConsumerState<SignInMobile> {
             hintText: 'Mobile Number',
             keyboardType: TextInputType.number,
           ),
+          Spacer(),
           CustomButton(
             label: 'Continue',
-            onPressed: () {},
+            onPressed: () {
+              Navigator.pushNamed(
+                context,
+                Routes.otp,
+                arguments: {'email': numberController.text},
+              );
+            },
             isSmall: false,
             type: ButtonType.primary,
           ),
