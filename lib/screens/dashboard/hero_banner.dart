@@ -1,22 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:special40/utils/app_colors.dart';
 import 'package:special40/utils/constants.dart';
-
 import '../../utils/spaces.dart';
 
 class HeroBannerMobile extends StatefulWidget {
   const HeroBannerMobile({super.key});
 
   @override
-  State<HeroBannerMobile> createState() => HeroBannerMobileState();
+  State<HeroBannerMobile> createState() => _HeroBannerMobileState();
 }
 
-class HeroBannerMobileState extends State<HeroBannerMobile>
+class _HeroBannerMobileState extends State<HeroBannerMobile>
     with SingleTickerProviderStateMixin {
-  late AnimationController controller;
-  late Animation<double> fadeText, fadeMetrics, fadeImage;
-  late Animation<Offset> slideText, slideImage;
-  late Animation<double> scaleImage;
+  late final AnimationController controller;
+  late final Animation<double> fadeText, fadeMetrics, fadeImage;
+  late final Animation<Offset> slideText, slideImage;
+  late final Animation<double> scaleImage;
 
   @override
   void initState() {
@@ -24,38 +23,30 @@ class HeroBannerMobileState extends State<HeroBannerMobile>
 
     controller = AnimationController(
       vsync: this,
-      duration: const Duration(milliseconds: 1200),
+      duration: const Duration(milliseconds: 1000),
     )..forward();
 
-    fadeText = Tween<double>(begin: 0, end: 1).animate(
+    fadeText = Tween(begin: 0.0, end: 1.0).animate(
       CurvedAnimation(parent: controller, curve: const Interval(0.1, 0.4)),
     );
 
-    slideText = Tween<Offset>(begin: const Offset(0, 0.1), end: Offset.zero)
-        .animate(
-          CurvedAnimation(
-            parent: controller,
-            curve: const Interval(0.1, 0.4, curve: Curves.easeOut),
-          ),
-        );
+    slideText = Tween(begin: const Offset(0, 0.1), end: Offset.zero).animate(
+      CurvedAnimation(parent: controller, curve: const Interval(0.1, 0.4)),
+    );
 
-    fadeMetrics = Tween<double>(begin: 0, end: 1).animate(
+    fadeMetrics = Tween(begin: 0.0, end: 1.0).animate(
       CurvedAnimation(parent: controller, curve: const Interval(0.4, 0.6)),
     );
 
-    fadeImage = Tween<double>(begin: 0, end: 1).animate(
+    fadeImage = Tween(begin: 0.0, end: 1.0).animate(
       CurvedAnimation(parent: controller, curve: const Interval(0.6, 1.0)),
     );
 
-    slideImage = Tween<Offset>(begin: const Offset(0, 0.1), end: Offset.zero)
-        .animate(
-          CurvedAnimation(
-            parent: controller,
-            curve: const Interval(0.6, 1.0, curve: Curves.easeOut),
-          ),
-        );
+    slideImage = Tween(begin: const Offset(0, 0.1), end: Offset.zero).animate(
+      CurvedAnimation(parent: controller, curve: const Interval(0.6, 1.0)),
+    );
 
-    scaleImage = Tween<double>(begin: 0.95, end: 1.0).animate(
+    scaleImage = Tween(begin: 0.95, end: 1.0).animate(
       CurvedAnimation(parent: controller, curve: const Interval(0.6, 1.0)),
     );
   }
@@ -69,7 +60,6 @@ class HeroBannerMobileState extends State<HeroBannerMobile>
   @override
   Widget build(BuildContext context) {
     return Stack(
-      clipBehavior: Clip.none,
       children: [
         Container(
           padding: const EdgeInsets.all(commonPaddingSize),
@@ -88,30 +78,19 @@ class HeroBannerMobileState extends State<HeroBannerMobile>
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        '#1 Job Oriented Course for B.Com Graduates',
+                        'Get Job-Ready',
                         style: TextStyle(
                           fontSize: baseFontSize + 4,
                           fontWeight: FontWeight.bold,
-                          color: Colors.white,
-                          height: 1.4,
+                          color: AppColors.secondary,
                         ),
                       ),
-                      sb(0, 1),
+                      sb(0, 0.5),
                       Text(
-                        'Open to working professionals, B.Com/M.Com graduates, and ACCA/CMA (qualified or semi-qualified) candidates.',
+                        'B.Com Graduates | Working Professionals',
                         style: TextStyle(
-                          fontSize: baseFontSize + 2,
+                          fontSize: baseFontSize + 1,
                           color: Colors.white70,
-                          height: 1.5,
-                        ),
-                      ),
-                      sb(0, 1),
-                      Text(
-                        'SPECIAL40 makes you job-ready!',
-                        style: TextStyle(
-                          fontSize: baseFontSize + 4,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.white,
                         ),
                       ),
                     ],
@@ -119,33 +98,7 @@ class HeroBannerMobileState extends State<HeroBannerMobile>
                 ),
               ),
               sb(0, 1),
-              FadeTransition(
-                opacity: fadeText,
-                child: SizedBox(
-                  width: double.infinity,
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: AppColors.secondary,
-                      foregroundColor: Colors.black,
-                      padding: EdgeInsets.symmetric(
-                        vertical: commonPaddingSize,
-                      ),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(commonRadiusSize),
-                      ),
-                    ),
-                    onPressed: () {},
-                    child: Text(
-                      'Explore Programs',
-                      style: TextStyle(
-                        fontSize: baseFontSize + 2,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-              sb(0, 1),
+
               FadeTransition(
                 opacity: fadeMetrics,
                 child: const Row(
@@ -156,14 +109,25 @@ class HeroBannerMobileState extends State<HeroBannerMobile>
                   ],
                 ),
               ),
-              sb(0, 10), // Space for the image pop-out
+              sb(0, 8),
+              FadeTransition(
+                opacity: fadeText,
+                child: Text(
+                  'Learn from \nIndustry Experts',
+                  style: TextStyle(
+                    fontSize: baseFontSize + 4,
+                    fontWeight: FontWeight.w700,
+                    color: AppColors.white,
+                  ),
+                ),
+              ),
             ],
           ),
         ),
         Positioned(
           bottom: 0,
-          right: -150,
           left: 0,
+          right: -200,
           child: FadeTransition(
             opacity: fadeImage,
             child: SlideTransition(
@@ -173,7 +137,7 @@ class HeroBannerMobileState extends State<HeroBannerMobile>
                 child: Center(
                   child: Image.asset(
                     'assets/images/Indrajith.png',
-                    height: 200,
+                    height: 180,
                     fit: BoxFit.contain,
                   ),
                 ),
@@ -200,14 +164,14 @@ class Metric extends StatelessWidget {
         Text(
           title,
           style: const TextStyle(
-            fontSize: 18,
+            fontSize: 16,
             fontWeight: FontWeight.bold,
             color: Colors.white,
           ),
         ),
         Text(
           subtitle,
-          style: const TextStyle(fontSize: 14, color: Colors.white70),
+          style: const TextStyle(fontSize: 13, color: Colors.white70),
         ),
       ],
     );

@@ -38,7 +38,7 @@ class CustomButtonState extends ConsumerState<CustomButton> {
       case ButtonType.outlined:
         return Colors.white;
       case ButtonType.cardButton:
-        return Color(0xffF8F9A6);
+        return AppColors.secondary;
     }
   }
 
@@ -68,7 +68,7 @@ class CustomButtonState extends ConsumerState<CustomButton> {
       case ButtonType.outlined:
         return AppColors.teal;
       case ButtonType.cardButton:
-        return Color(0xffF8F9A6);
+        return AppColors.secondary;
     }
   }
 
