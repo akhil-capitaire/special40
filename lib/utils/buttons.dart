@@ -12,8 +12,8 @@ class CustomButton extends ConsumerStatefulWidget {
   final Function onPressed;
   final bool isSmall;
   final ButtonType type;
-  bool noCurve = false;
-  CustomButton({
+  final bool noCurve;
+  const CustomButton({
     super.key,
     required this.label,
     required this.onPressed,

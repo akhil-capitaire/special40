@@ -25,7 +25,6 @@ class CourseScreenState extends ConsumerState<CourseScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
     return CustomScaffold(
       backButton: true,
       title: '',

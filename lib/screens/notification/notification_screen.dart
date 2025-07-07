@@ -16,7 +16,6 @@ class NotificationScreenState extends ConsumerState<NotificationScreen> {
   final emailController = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
     return CustomScaffold(
       backButton: true,
       title: 'Notifications',

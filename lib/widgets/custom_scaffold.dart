@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../utils/constants.dart';
 
+// ignore: must_be_immutable
 class CustomScaffold extends ConsumerStatefulWidget {
   bool backButton = false;
   bool isScrollable = true;

@@ -21,7 +21,9 @@ class SignUpScreenState extends ConsumerState<SignUpScreen> {
   final passwordController = TextEditingController();
   final confirmpasswordController = TextEditingController();
   bool obscureText = true;
-  bool ConfirmObscureText = true;
+
+  // ignore: non_constant_identifier_names
+  bool confirmObscureText = true;
 
   @override
   Widget build(BuildContext context) {
@@ -86,14 +88,14 @@ class SignUpScreenState extends ConsumerState<SignUpScreen> {
           FormInput(
             controller: confirmpasswordController,
             hintText: 'Confirm Password',
-            obscureText: ConfirmObscureText,
+            obscureText: confirmObscureText,
             suffix: IconButton(
               icon: Icon(
-                ConfirmObscureText ? Icons.visibility : Icons.visibility_off,
+                confirmObscureText ? Icons.visibility : Icons.visibility_off,
               ),
               onPressed: () {
                 setState(() {
-                  ConfirmObscureText = !ConfirmObscureText;
+                  confirmObscureText = !confirmObscureText;
                 });
               },
             ),

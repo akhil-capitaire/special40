@@ -11,12 +11,12 @@ class CourseCard extends StatelessWidget {
   final int progress; // percentage
 
   const CourseCard({
-    Key? key,
+    super.key,
     required this.title,
     required this.star,
     required this.imageUrl,
     required this.progress,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

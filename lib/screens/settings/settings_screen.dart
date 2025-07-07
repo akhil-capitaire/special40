@@ -17,7 +17,6 @@ class SettingScreenState extends ConsumerState<SettingScreen> {
   final emailController = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
     final items = [
       {'icon': Icons.person, 'label': 'Edit Profile'},
       {'icon': Icons.payment, 'label': 'Payment Option'},

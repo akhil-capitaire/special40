@@ -25,7 +25,7 @@ class _ExpandableTextState extends State<ExpandableText> {
     final shouldTruncate = widget.text.length > widget.truncateLength;
     final displayText = expanded || !shouldTruncate
         ? widget.text
-        : widget.text.substring(0, widget.truncateLength) + '...';
+        : '${widget.text.substring(0, widget.truncateLength)}...';
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,

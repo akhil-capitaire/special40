@@ -20,7 +20,6 @@ class HomeScreenState extends ConsumerState<HomeScreen> {
   @override
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
   }
 
