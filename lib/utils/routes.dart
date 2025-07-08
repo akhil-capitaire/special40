@@ -7,6 +7,7 @@ import 'package:special40/screens/signin/signin_method_screen.dart';
 import 'package:special40/screens/signin/signin_mobile.dart';
 import 'package:special40/screens/signup/signup_screen.dart';
 
+import '../screens/chat/chat_room_screen.dart';
 import '../screens/course/course_screen.dart';
 import '../screens/course/enroll_screen.dart';
 import '../screens/onboard/onboard_screen.dart';
@@ -22,6 +23,7 @@ class Routes {
   static const String otp = '/otp';
   static const String signInEmail = '/signInEmail';
   static const String home = '/home';
+  static const String chatRoom = '/chatRoom';
   static const String courseScreen = '/courseScreen';
   static const String enrollScreen = '/enrollScreen';
   static const String notificationScreen = '/notificationScreen';
@@ -51,6 +53,8 @@ class Routes {
         );
       case signUp:
         return MaterialPageRoute(builder: (_) => SignUpScreen());
+      case chatRoom:
+        return MaterialPageRoute(builder: (_) => ChatRoomScreen());
       case notificationScreen:
         return MaterialPageRoute(builder: (_) => NotificationScreen());
       case settingScreen:

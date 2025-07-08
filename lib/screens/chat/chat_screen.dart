@@ -5,6 +5,7 @@ import 'package:special40/utils/spaces.dart';
 
 import '../../utils/app_colors.dart';
 import '../../utils/constants.dart';
+import '../../utils/routes.dart';
 import '../../widgets/custom_scaffold.dart';
 
 class ChatScreen extends ConsumerStatefulWidget {
@@ -83,6 +84,9 @@ class ChatScreenState extends ConsumerState<ChatScreen> {
     required String avatar,
   }) {
     return ListTile(
+      onTap: () {
+        Navigator.pushNamed(context, Routes.chatRoom);
+      },
       contentPadding: EdgeInsets.zero,
       leading: CircleAvatar(radius: 24, backgroundImage: AssetImage(avatar)),
       title: Text(name, style: const TextStyle(fontWeight: FontWeight.w600)),

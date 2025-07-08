@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:special40/utils/app_colors.dart';
 import 'package:special40/utils/constants.dart';
+
 import '../../utils/spaces.dart';
 
 class HeroBannerMobile extends StatefulWidget {
@@ -109,7 +110,7 @@ class _HeroBannerMobileState extends State<HeroBannerMobile>
                   ],
                 ),
               ),
-              sb(0, 8),
+              sb(0, 7),
               FadeTransition(
                 opacity: fadeText,
                 child: Text(
@@ -125,7 +126,7 @@ class _HeroBannerMobileState extends State<HeroBannerMobile>
           ),
         ),
         Positioned(
-          bottom: 0,
+          bottom: -10,
           left: 0,
           right: -200,
           child: FadeTransition(

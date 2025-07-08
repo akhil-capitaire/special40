@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:special40/providers/home_screen_provider.dart';
-import 'package:special40/utils/app_colors.dart';
-import 'package:special40/utils/constants.dart';
-import 'package:special40/utils/spaces.dart';
+import 'package:special40/utils/buttons.dart';
 
+import '../../utils/app_colors.dart';
+import '../../utils/constants.dart';
+import '../../utils/spaces.dart';
 import '../../widgets/custom_scaffold.dart';
 
 class ProfileScreen extends ConsumerStatefulWidget {
@@ -26,7 +27,7 @@ class ProfileScreenState extends ConsumerState<ProfileScreen> {
       },
       body: Column(
         children: [
-          sb(0, 8),
+          sb(0, 6),
           // Profile Image
           Center(
             child: CircleAvatar(
@@ -49,33 +50,17 @@ class ProfileScreenState extends ConsumerState<ProfileScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 // Name, Tagline, Edit Icon
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Text(
-                            'Name Here',
-                            style: TextStyle(
-                              fontWeight: FontWeight.w600,
-                              fontSize: baseFontSize + 2,
-                            ),
-                          ),
-                          sb(0, 2),
-                          Text(
-                            'Tag Line',
-                            style: TextStyle(
-                              fontSize: baseFontSize,
-                              color: Colors.grey,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Icon(Icons.edit, size: 18, color: Colors.grey.shade600),
-                  ],
+                Text(
+                  'Akhil KB',
+                  style: TextStyle(
+                    fontWeight: FontWeight.w600,
+                    fontSize: baseFontSize + 2,
+                  ),
+                ),
+                sb(0, 2),
+                Text(
+                  'Flutter Developer',
+                  style: TextStyle(fontSize: baseFontSize, color: Colors.grey),
                 ),
                 sb(0, 2),
                 // About Me
@@ -114,6 +99,14 @@ class ProfileScreenState extends ConsumerState<ProfileScreen> {
               ],
             ),
           ),
+          Spacer(),
+          CustomButton(
+            label: 'Edit Profile',
+            onPressed: () {},
+            isSmall: false,
+            type: ButtonType.primary,
+          ),
+          sb(0, 1),
         ],
       ),
     );
@@ -121,9 +114,9 @@ class ProfileScreenState extends ConsumerState<ProfileScreen> {
 
   Widget buildSkillChip(String label) {
     return Container(
-      padding: EdgeInsets.all(commonPaddingSize),
+      padding: EdgeInsets.all(commonPaddingSize / 2),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(commonRadiusSize),
+        borderRadius: BorderRadius.circular(40),
         color: Colors.white,
         border: Border.all(color: Colors.grey.shade300),
       ),

@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:special40/utils/app_colors.dart';
 import 'package:special40/utils/constants.dart';
+import 'package:special40/utils/size.dart';
 import 'package:special40/utils/spaces.dart';
 
 import '../../utils/routes.dart';
 import '../../widgets/custom_scaffold.dart';
 import 'course_card.dart';
 import 'hero_banner.dart';
+import 'job_card.dart';
 
 class DashboardScreen extends ConsumerStatefulWidget {
   const DashboardScreen({super.key});
@@ -48,7 +50,7 @@ class DashboardScreenState extends ConsumerState<DashboardScreen> {
                       ),
                     ),
                     TextSpan(
-                      text: 'Fawais',
+                      text: 'Akhil',
                       style: theme.textTheme.bodyMedium!.copyWith(
                         fontSize: 24,
                         fontWeight: FontWeight.normal,
@@ -77,9 +79,9 @@ class DashboardScreenState extends ConsumerState<DashboardScreen> {
               ),
             ],
           ),
-          sb(0, 2),
+          sb(0, 1),
           HeroBannerMobile(),
-          sb(0, 2),
+          sb(0, 1),
           Row(
             children: [
               RichText(
@@ -92,7 +94,7 @@ class DashboardScreenState extends ConsumerState<DashboardScreen> {
                   ),
                   children: [
                     TextSpan(
-                      text: 'Continue Watching',
+                      text: 'Courses we offer ',
                       style: theme.textTheme.bodyMedium!.copyWith(
                         fontSize: baseFontSize + 4,
                         fontWeight: FontWeight.normal,
@@ -105,36 +107,47 @@ class DashboardScreenState extends ConsumerState<DashboardScreen> {
               Spacer(),
               Row(
                 children: [
-                  Text('View All'),
-                  Icon(
-                    Icons.arrow_forward_ios,
-                    color: AppColors.grayLight,
-                    size: 16,
-                  ),
+                  // Text('View All'),
+                  Icon(Icons.arrow_forward_ios, color: Colors.grey, size: 16),
                 ],
               ),
             ],
           ),
           sb(0, 1),
-          GridView.builder(
-            shrinkWrap: true,
-            physics: NeverScrollableScrollPhysics(),
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2,
-              crossAxisSpacing: 12,
-              mainAxisSpacing: 12,
-              childAspectRatio: 0.7,
+          SizedBox(
+            height: ScreenSize.height(25),
+            child: SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                spacing: 20,
+                children: [
+                  CourseCard(
+                    title: 'AFM India',
+                    star: 4,
+                    imageUrl: 'assets/images/courses/AFM-India.png',
+                    progress: 50,
+                  ),
+                  CourseCard(
+                    title: 'AFM Gulf',
+                    star: 4.5,
+                    imageUrl: 'assets/images/courses/AFM-Gulf.png',
+                    progress: 50,
+                  ),
+                  CourseCard(
+                    title: 'AFM Plus',
+                    star: 3.9,
+                    imageUrl: 'assets/images/courses/AFM-Plus.png',
+                    progress: 50,
+                    isComingSoon: true,
+                  ),
+                  // Add more CourseCard widgets here as needed
+                ],
+              ),
             ),
-            itemCount: 4, // Change this to your actual item count
-            itemBuilder: (context, index) {
-              return CourseCard(
-                title: 'Graphic Design',
-                star: 4,
-                imageUrl: 'assets/images/demo/demo${index + 1}.png',
-                progress: 50,
-              );
-            },
           ),
+          sb(0, 1),
+          JobReadyBanner(),
+          sb(0, 1),
         ],
       ),
     );

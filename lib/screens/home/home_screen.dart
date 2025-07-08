@@ -97,7 +97,7 @@ class HomeScreenState extends ConsumerState<HomeScreen> {
                           ref.read(homeScreenProvider.notifier).updateIndex(2),
                     ),
                     bottomNavItem(
-                      icon: Icons.person,
+                      icon: Icons.person_2_outlined,
                       label: "Profile",
                       index: 3,
                       isActive: index == 3,

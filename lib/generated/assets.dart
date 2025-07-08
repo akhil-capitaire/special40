@@ -2,6 +2,9 @@
 class Assets {
   Assets._();
 
+  static const String coursesAFMGulf = 'assets/images/courses/AFM-Gulf.png';
+  static const String coursesAFMIndia = 'assets/images/courses/AFM-India.png';
+  static const String coursesAFMPlus = 'assets/images/courses/AFM-Plus.png';
   static const String demoDemo1 = 'assets/images/demo/demo1.png';
   static const String demoDemo2 = 'assets/images/demo/demo2.png';
   static const String demoDemo3 = 'assets/images/demo/demo3.png';
@@ -29,6 +32,7 @@ class Assets {
   static const String illustrationsLogin =
       'assets/images/illustrations/login.png';
   static const String imagesIndrajith = 'assets/images/Indrajith.png';
+  static const String imagesInterview = 'assets/images/interview.png';
   static const String imagesLogo = 'assets/images/logo.png';
   static const String imagesProfile = 'assets/images/profile.png';
   static const String onboardOnboard1 = 'assets/images/onboard/onboard1.png';

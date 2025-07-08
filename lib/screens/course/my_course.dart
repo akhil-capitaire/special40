@@ -19,24 +19,19 @@ class MyCourseScreenState extends ConsumerState<MyCourseScreen> {
   Widget build(BuildContext context) {
     final courses = [
       {
-        'title': 'Wireframing Fundamentals',
+        'title': 'AFM India',
         'author': 'Shoaib Hassan',
-        'image': 'assets/images/demo/demo1.png',
+        'image': 'assets/images/courses/AFM-India.png',
       },
       {
-        'title': 'UI UX Designing',
+        'title': 'AFM Gulf',
         'author': 'HMI Waqar',
-        'image': 'assets/images/demo/demo2.png',
+        'image': 'assets/images/courses/AFM-Gulf.png',
       },
       {
-        'title': 'Website Design',
+        'title': 'AFM Plus',
         'author': 'Adnan Yousaf',
-        'image': 'assets/images/demo/demo3.png',
-      },
-      {
-        'title': 'Figma Basics',
-        'author': 'Usman Diljan',
-        'image': 'assets/images/demo/demo4.png',
+        'image': 'assets/images/courses/AFM-Plus.png',
       },
     ];
 
@@ -82,7 +77,7 @@ class MyCourseScreenState extends ConsumerState<MyCourseScreen> {
             borderRadius: BorderRadius.circular(commonRadiusSize),
             child: Image.asset(
               imagePath,
-              width: 60,
+              width: 100,
               height: 60,
               fit: BoxFit.cover,
             ),
@@ -99,11 +94,6 @@ class MyCourseScreenState extends ConsumerState<MyCourseScreen> {
                     fontWeight: FontWeight.w600,
                     fontSize: baseFontSize + 2,
                   ),
-                ),
-                sb(2, 0),
-                Text(
-                  'By $author',
-                  style: TextStyle(fontSize: baseFontSize, color: Colors.grey),
                 ),
                 sb(2, 0),
                 Row(

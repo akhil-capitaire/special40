@@ -42,21 +42,19 @@ class CustomScaffoldState extends ConsumerState<CustomScaffold> {
             ? AppBar(
                 backgroundColor: Colors.white,
                 elevation: 0,
-                leading: widget.backButton
-                    ? IconButton(
-                        icon: const Icon(
-                          Icons.arrow_back_ios_new_rounded,
-                          color: Colors.black,
-                        ),
-                        onPressed: () {
-                          if (widget.onBackPressed != null) {
-                            widget.onBackPressed!();
-                          } else {
-                            Navigator.of(context).pop();
-                          }
-                        },
-                      )
-                    : null,
+                leading: IconButton(
+                  icon: const Icon(
+                    Icons.arrow_back_ios_new_rounded,
+                    color: Colors.black,
+                  ),
+                  onPressed: () {
+                    if (widget.onBackPressed != null) {
+                      widget.onBackPressed!();
+                    } else {
+                      Navigator.of(context).pop();
+                    }
+                  },
+                ),
                 automaticallyImplyLeading: widget.backButton,
                 title: Text(
                   widget.title,
