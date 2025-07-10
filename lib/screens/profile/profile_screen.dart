@@ -5,6 +5,7 @@ import 'package:special40/utils/buttons.dart';
 
 import '../../utils/app_colors.dart';
 import '../../utils/constants.dart';
+import '../../utils/routes.dart';
 import '../../utils/spaces.dart';
 import '../../widgets/custom_scaffold.dart';
 
@@ -73,7 +74,7 @@ class ProfileScreenState extends ConsumerState<ProfileScreen> {
                 ),
                 sb(0, 2),
                 Text(
-                  'Lorem ipsum dolor sit amet consectetur. Nec eget accumsan molestie proin. Integer rhoncus vitae nisi natoque ac mus tellus scelerisque gravida.',
+                  'A passionate developer with experience in building beautiful and functional Flutter applications. Always eager to learn and take on new challenges.',
                   style: TextStyle(fontSize: baseFontSize, color: Colors.grey),
                 ),
                 sb(0, 2),
@@ -102,7 +103,9 @@ class ProfileScreenState extends ConsumerState<ProfileScreen> {
           Spacer(),
           CustomButton(
             label: 'Edit Profile',
-            onPressed: () {},
+            onPressed: () {
+              Navigator.pushNamed(context, Routes.editProfile);
+            },
             isSmall: false,
             type: ButtonType.primary,
           ),

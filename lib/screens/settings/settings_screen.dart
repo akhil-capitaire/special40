@@ -4,6 +4,7 @@ import 'package:special40/utils/app_colors.dart';
 import 'package:special40/utils/constants.dart';
 import 'package:special40/utils/spaces.dart';
 
+import '../../utils/routes.dart';
 import '../../widgets/custom_scaffold.dart';
 
 class SettingScreen extends ConsumerStatefulWidget {
@@ -68,7 +69,31 @@ class SettingScreenState extends ConsumerState<SettingScreen> {
                     color: Colors.grey,
                   ),
                   onTap: () {
-                    // Handle navigation or action here
+                    if (item['label'] == 'Logout') {
+                      // Handle logout logic here
+                      Navigator.pushNamedAndRemoveUntil(
+                        context,
+                        Routes.onboard,
+                        (route) => false,
+                      );
+                      return;
+                    } else if (item['label'] == 'Payment Option') {
+                      // Navigate to payment options
+                      Navigator.pushNamed(context, Routes.paymentOptions);
+                      return;
+                    } else if (item['label'] == 'Terms & Conditions') {
+                      // Navigate to terms and conditions
+                      // Navigator.pushNamed(context, Routes.termsAndConditions);
+                      return;
+                    } else if (item['label'] == 'Help Center') {
+                      // Navigate to help center
+                      // Navigator.pushNamed(context, Routes.helpCenter);
+                      return;
+                    } else if (item['label'] == 'Edit Profile') {
+                      // Navigate to edit profile
+                      Navigator.pushNamed(context, Routes.editProfile);
+                      return;
+                    }
                   },
                 );
               }).toList(),

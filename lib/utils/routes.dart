@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:special40/screens/home/home_screen.dart';
 import 'package:special40/screens/notification/notification_screen.dart';
+import 'package:special40/screens/profile/edit_profile.dart';
+import 'package:special40/screens/settings/payment_options.dart';
 import 'package:special40/screens/settings/settings_screen.dart';
 import 'package:special40/screens/signin/otp_screen.dart';
 import 'package:special40/screens/signin/signin_method_screen.dart';
@@ -17,12 +19,14 @@ import '../screens/splash/splash_screen.dart';
 class Routes {
   static const String splash = '/';
   static const String onboard = '/onboard';
+  static const String paymentOptions = '/paymentOptions';
   static const String signInMethod = '/signInMethod';
   static const String signInMobile = '/signInMobile';
   static const String signUp = '/signUp';
   static const String otp = '/otp';
   static const String signInEmail = '/signInEmail';
   static const String home = '/home';
+  static const String editProfile = '/editProfile';
   static const String chatRoom = '/chatRoom';
   static const String courseScreen = '/courseScreen';
   static const String enrollScreen = '/enrollScreen';
@@ -59,6 +63,10 @@ class Routes {
         return MaterialPageRoute(builder: (_) => NotificationScreen());
       case settingScreen:
         return MaterialPageRoute(builder: (_) => SettingScreen());
+      case paymentOptions:
+        return MaterialPageRoute(builder: (_) => PaymentOptions());
+      case editProfile:
+        return MaterialPageRoute(builder: (_) => EditProfileScreen());
       default:
         return MaterialPageRoute(builder: (_) => SplashScreen());
     }

@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:special40/utils/app_colors.dart';
+import 'package:special40/utils/constants.dart';
+import 'package:special40/utils/spaces.dart';
 
 class ChapterCard extends ConsumerStatefulWidget {
   const ChapterCard({super.key});
@@ -14,58 +17,74 @@ class ChapterCardState extends ConsumerState<ChapterCard> {
   @override
   Widget build(BuildContext context) {
     return Card(
-      color: Colors.grey.shade100,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+      color: AppColors.blueLight,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(commonRadiusSize),
+      ),
       child: Column(
-        children: [
-          ListTile(
-            title: Text(
-              'Chapter 1: What is Graphics Designing?',
-              style: const TextStyle(fontWeight: FontWeight.bold),
-            ),
-            trailing: Icon(
-              isExpanded ? Icons.expand_less : Icons.expand_more,
-              color: Colors.black54,
-            ),
-            onTap: () => setState(() => isExpanded = !isExpanded),
-          ),
-          if (isExpanded)
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-              child: Column(
-                children: [
-                  buildIconRow(
-                    Icons.play_circle,
-                    'Lorem ipsum dolor sit amet consectetur.',
-                  ),
-                  buildIconRow(
-                    Icons.assignment,
-                    'Lorem ipsum dolor sit amet consectetur.',
-                  ),
-                  buildIconRow(
-                    Icons.play_circle,
-                    'Lorem ipsum dolor sit amet consectetur.',
-                  ),
-                  buildIconRow(
-                    Icons.assignment,
-                    'Lorem ipsum dolor sit amet consectetur.',
-                  ),
-                ],
-              ),
-            ),
-        ],
+        children: [buildHeader(), if (isExpanded) buildChapterDetails()],
       ),
     );
   }
 
-  Widget buildIconRow(IconData icon, String text) {
+  Widget buildHeader() {
+    return ListTile(
+      title: const Text(
+        'Chapter 1: What is Graphics Designing?',
+        style: TextStyle(fontWeight: FontWeight.bold),
+      ),
+      trailing: Icon(
+        isExpanded ? Icons.expand_less : Icons.expand_more,
+        color: Colors.black54,
+      ),
+      onTap: () => setState(() => isExpanded = !isExpanded),
+    );
+  }
+
+  Widget buildChapterDetails() {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 6),
+      padding: EdgeInsets.all(commonPaddingSize / 2),
+      child: Column(
+        children: const [
+          ChapterItem(
+            icon: Icons.play_circle,
+            label: 'Lorem ipsum dolor sit amet consectetur.',
+          ),
+          ChapterItem(
+            icon: Icons.assignment,
+            label: 'Lorem ipsum dolor sit amet consectetur.',
+          ),
+          ChapterItem(
+            icon: Icons.play_circle,
+            label: 'Lorem ipsum dolor sit amet consectetur.',
+          ),
+          ChapterItem(
+            icon: Icons.assignment,
+            label: 'Lorem ipsum dolor sit amet consectetur.',
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class ChapterItem extends StatelessWidget {
+  final IconData icon;
+  final String label;
+
+  const ChapterItem({super.key, required this.icon, required this.label});
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.symmetric(vertical: commonPaddingSize / 2),
       child: Row(
         children: [
           Icon(icon, color: Colors.blue.shade900),
-          const SizedBox(width: 12),
-          Expanded(child: Text(text, style: const TextStyle(fontSize: 14))),
+          sb(4, 0),
+          Expanded(
+            child: Text(label, style: TextStyle(fontSize: baseFontSize + 2)),
+          ),
         ],
       ),
     );

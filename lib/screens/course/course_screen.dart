@@ -62,6 +62,7 @@ class CourseScreenState extends ConsumerState<CourseScreen> {
             child: Column(
               children: [
                 TabBar(
+                  dividerHeight: 0,
                   labelColor: AppColors.teal,
                   unselectedLabelColor: Colors.grey,
                   indicatorColor: AppColors.teal,

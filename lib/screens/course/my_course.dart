@@ -15,46 +15,94 @@ class MyCourseScreen extends ConsumerStatefulWidget {
 }
 
 class MyCourseScreenState extends ConsumerState<MyCourseScreen> {
+  final allCourses = [
+    {
+      'title': 'AFM India',
+      'author': 'Shoaib Hassan',
+      'image': 'assets/images/courses/AFM-India.png',
+      'progress': 72.0,
+    },
+    {
+      'title': 'AFM Gulf',
+      'author': 'HMI Waqar',
+      'image': 'assets/images/courses/AFM-Gulf.png',
+      'progress': 100.0,
+    },
+    {
+      'title': 'AFM Plus',
+      'author': 'Adnan Yousaf',
+      'image': 'assets/images/courses/AFM-Plus.png',
+      'progress': 26.0,
+    },
+  ];
+
   @override
   Widget build(BuildContext context) {
-    final courses = [
-      {
-        'title': 'AFM India',
-        'author': 'Shoaib Hassan',
-        'image': 'assets/images/courses/AFM-India.png',
-      },
-      {
-        'title': 'AFM Gulf',
-        'author': 'HMI Waqar',
-        'image': 'assets/images/courses/AFM-Gulf.png',
-      },
-      {
-        'title': 'AFM Plus',
-        'author': 'Adnan Yousaf',
-        'image': 'assets/images/courses/AFM-Plus.png',
-      },
-    ];
+    final ongoingCourses = allCourses
+        .where((c) => c['progress'] as double < 100)
+        .toList();
+    final completedCourses = allCourses
+        .where((c) => c['progress'] as double >= 100)
+        .toList();
 
-    return CustomScaffold(
-      backButton: true,
-      title: 'My Courses',
-      isScrollable: false,
-      onBackPressed: () {
-        ref.read(homeScreenProvider.notifier).updateIndex(0);
-      },
-      body: ListView.separated(
-        itemCount: courses.length,
-        separatorBuilder: (_, __) => const SizedBox(height: 12),
-        itemBuilder: (context, index) {
-          final course = courses[index];
-          return buildCourseCard(
-            title: course['title']!,
-            author: course['author']!,
-            imagePath: course['image']!,
-            progress: 0.35,
-          );
+    return DefaultTabController(
+      length: 2,
+      child: CustomScaffold(
+        backButton: true,
+        title: 'My Courses',
+        isScrollable: false,
+        onBackPressed: () {
+          ref.read(homeScreenProvider.notifier).updateIndex(0);
         },
+        body: Column(
+          children: [
+            TabBar(
+              labelColor: AppColors.teal,
+              unselectedLabelColor: Colors.grey,
+              indicatorColor: AppColors.teal,
+              dividerHeight: 0,
+              tabs: const [
+                Tab(text: 'Ongoing'),
+                Tab(text: 'Completed'),
+              ],
+            ),
+            Expanded(
+              child: TabBarView(
+                children: [
+                  buildCourseList(ongoingCourses),
+                  buildCourseList(completedCourses),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
+    );
+  }
+
+  Widget buildCourseList(List<Map<String, dynamic>> courses) {
+    if (courses.isEmpty) {
+      return const Center(
+        child: Text(
+          'No courses available',
+          style: TextStyle(fontSize: 16, color: Colors.grey),
+        ),
+      );
+    }
+
+    return ListView.separated(
+      padding: EdgeInsets.symmetric(vertical: commonPaddingSize),
+      itemCount: courses.length,
+      separatorBuilder: (_, __) => const SizedBox(height: 16),
+      itemBuilder: (context, index) {
+        final course = courses[index];
+        return buildCourseCard(
+          title: course['title']!,
+          author: course['author']!,
+          imagePath: course['image']!,
+          progress: (course['progress']! as double) / 100,
+        );
+      },
     );
   }
 
@@ -64,64 +112,65 @@ class MyCourseScreenState extends ConsumerState<MyCourseScreen> {
     required String imagePath,
     required double progress,
   }) {
-    return Container(
-      decoration: BoxDecoration(
-        color: AppColors.blueLight,
-        borderRadius: BorderRadius.circular(commonRadiusSize),
-      ),
-      padding: EdgeInsets.all(commonPaddingSize),
-      child: Row(
-        children: [
-          // Thumbnail Image
-          ClipRRect(
-            borderRadius: BorderRadius.circular(commonRadiusSize),
-            child: Image.asset(
-              imagePath,
-              width: 100,
-              height: 60,
-              fit: BoxFit.cover,
+    return Material(
+      elevation: 2,
+      color: AppColors.blueLight,
+      borderRadius: BorderRadius.circular(commonRadiusSize),
+      child: Container(
+        padding: EdgeInsets.all(commonPaddingSize),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(commonRadiusSize),
+        ),
+        child: Row(
+          children: [
+            ClipRRect(
+              borderRadius: BorderRadius.circular(commonRadiusSize),
+              child: Image.asset(
+                imagePath,
+                width: 100,
+                height: 70,
+                fit: BoxFit.cover,
+              ),
             ),
-          ),
-          sb(2, 0),
-          // Title, Author, Progress
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  title,
-                  style: TextStyle(
-                    fontWeight: FontWeight.w600,
-                    fontSize: baseFontSize + 2,
+            sb(3, 0),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    title,
+                    style: TextStyle(
+                      fontWeight: FontWeight.w700,
+                      fontSize: baseFontSize + 2,
+                      color: Colors.black87,
+                    ),
                   ),
-                ),
-                sb(2, 0),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(right: 4),
-                      child: Text(
-                        '${(progress * 100).toInt()}% Done',
+
+                  sb(0, 2),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        '${(progress * 100).toInt()}% Completed',
                         style: TextStyle(
                           fontSize: baseFontSize - 1,
-                          color: Colors.grey,
+                          color: Colors.grey[600],
                         ),
                       ),
-                    ),
-                  ],
-                ),
-                sb(2, 0),
-                LinearProgressIndicator(
-                  value: progress,
-                  color: AppColors.teal,
-                  backgroundColor: Colors.grey.shade300,
-                  minHeight: 5,
-                ),
-              ],
+                    ],
+                  ),
+                  sb(0, 1),
+                  LinearProgressIndicator(
+                    value: progress,
+                    minHeight: 6,
+                    backgroundColor: Colors.grey.shade300,
+                    valueColor: AlwaysStoppedAnimation(AppColors.teal),
+                  ),
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

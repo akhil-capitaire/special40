@@ -4,22 +4,21 @@ import 'package:special40/utils/buttons.dart';
 import 'package:special40/utils/spaces.dart';
 import 'package:special40/widgets/form_input.dart';
 
-import '../../utils/routes.dart';
 import '../../widgets/custom_scaffold.dart';
 
-class SignUpScreen extends ConsumerStatefulWidget {
-  const SignUpScreen({super.key});
+class EditProfileScreen extends ConsumerStatefulWidget {
+  const EditProfileScreen({super.key});
 
   @override
-  ConsumerState<SignUpScreen> createState() => SignUpScreenState();
+  ConsumerState<EditProfileScreen> createState() => EditProfileScreenState();
 }
 
-class SignUpScreenState extends ConsumerState<SignUpScreen> {
+class EditProfileScreenState extends ConsumerState<EditProfileScreen> {
   final nameController = TextEditingController();
   final emailController = TextEditingController();
   final numberController = TextEditingController();
   final passwordController = TextEditingController();
-  final confirmpasswordController = TextEditingController();
+  final confirmPasswordController = TextEditingController();
   bool obscureText = true;
 
   // ignore: non_constant_identifier_names
@@ -36,7 +35,7 @@ class SignUpScreenState extends ConsumerState<SignUpScreen> {
           Column(
             children: [
               Text(
-                'Sign Up',
+                'Edit Profile',
                 style: theme.textTheme.bodyMedium!.copyWith(
                   fontSize: 24,
                   fontWeight: FontWeight.bold,
@@ -46,7 +45,7 @@ class SignUpScreenState extends ConsumerState<SignUpScreen> {
               ),
               sb(0, 1),
               Text(
-                'Create an account to begin your Learning Journey',
+                'Update your information to keep your profile current',
                 style: theme.textTheme.bodyMedium!.copyWith(
                   fontSize: 16,
                   fontWeight: FontWeight.normal,
@@ -86,7 +85,7 @@ class SignUpScreenState extends ConsumerState<SignUpScreen> {
           ),
           sb(0, 1),
           FormInput(
-            controller: confirmpasswordController,
+            controller: confirmPasswordController,
             hintText: 'Confirm Password',
             obscureText: confirmObscureText,
             suffix: IconButton(
@@ -100,46 +99,12 @@ class SignUpScreenState extends ConsumerState<SignUpScreen> {
               },
             ),
           ),
-          sb(0, 2),
-          Column(
-            children: [
-              CustomButton(
-                label: 'Sign Up',
-                onPressed: () {},
-                isSmall: false,
-                type: ButtonType.primary,
-              ),
-              sb(0, 2),
-              Row(
-                children: [
-                  Expanded(
-                    child: Divider(color: Colors.grey.shade400, thickness: 1),
-                  ),
-                  sb(0, 1),
-                  Text(
-                    'Do you have an account?',
-                    style: theme.textTheme.bodyMedium!.copyWith(
-                      fontSize: 14,
-                      fontWeight: FontWeight.normal,
-                      color: Colors.black54,
-                    ),
-                  ),
-                  sb(0, 1),
-                  Expanded(
-                    child: Divider(color: Colors.grey.shade400, thickness: 1),
-                  ),
-                ],
-              ),
-              sb(0, 2),
-              CustomButton(
-                label: 'Sign In',
-                onPressed: () {
-                  Navigator.pushNamed(context, Routes.signInMethod);
-                },
-                isSmall: false,
-                type: ButtonType.outlined,
-              ),
-            ],
+          sb(0, 8),
+          CustomButton(
+            label: 'Update Profile',
+            onPressed: () {},
+            isSmall: false,
+            type: ButtonType.primary,
           ),
         ],
       ),
